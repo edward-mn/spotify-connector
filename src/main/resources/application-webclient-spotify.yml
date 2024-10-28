@@ -1,0 +1,6 @@
+webclient:
+  spotify:
+    grantType: ${GRANT_TYPE:}
+    credentials:
+      clientId: ${CLIENT_ID:}
+      clientSecret: ${CLIENT_SECRET:}
