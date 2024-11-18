@@ -1,31 +1,21 @@
 package br.com.spring.spotify.connector.domain.service;
 
 import br.com.spring.spotify.connector.adapter.outbound.integration.webclient.authentication.WebClientRequestToken;
+import br.com.spring.spotify.connector.domain.service.output.albums.SpotifyDataOutput;
 import br.com.spring.spotify.connector.domain.usecase.UseCaseSpotifyConnectorGetAlbumsById;
-import jakarta.servlet.http.HttpServletRequest;
+import br.com.spring.spotify.connector.port.outbound.SpotifyAlbumsOutBoundPort;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 
 import java.util.*;
 
+@RequiredArgsConstructor
 @Service
-public class SpotifySevice {
+public class SpotifySevice implements UseCaseSpotifyConnectorGetAlbumsById {
+
     private final WebClientRequestToken webClientRequestToken;
-    private final UseCaseSpotifyConnectorGetAlbumsById useCaseSpotifyConnectorGetAlbumsById;
-
-    public SpotifySevice(
-            WebClientRequestToken webClientRequestToken,
-            UseCaseSpotifyConnectorGetAlbumsById useCaseSpotifyConnectorGetAlbumsById
-    ) {
-        this.webClientRequestToken = webClientRequestToken;
-        this.useCaseSpotifyConnectorGetAlbumsById = useCaseSpotifyConnectorGetAlbumsById;
-    }
-
-    public ResponseEntity<Object> getAlbumsById(String albumId){
-        return useCaseSpotifyConnectorGetAlbumsById.getAlbums(albumId, getAccessToken());
-    }
+    private final SpotifyAlbumsOutBoundPort spotifyAlbumsOutBoundPort;
 
     private Map<String, String> getAccessToken(){
         Map<String, String> headers = new HashMap<>();
@@ -34,5 +24,11 @@ public class SpotifySevice {
         headers.put("Authorization", "Bearer "+ webClientRequestToken.createToken().access_token());
 
         return headers;
+    }
+
+    @Override
+    public ResponseEntity<SpotifyDataOutput> getAlbums(String albumId) {
+        var token = getAccessToken();
+        return spotifyAlbumsOutBoundPort.getAlbums(albumId, token);
     }
 }
