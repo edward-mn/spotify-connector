@@ -1,7 +1,7 @@
 package br.com.spring.spotify.connector.domain.service;
 
 import br.com.spring.spotify.connector.adapter.outbound.integration.webclient.authentication.WebClientRequestToken;
-import br.com.spring.spotify.connector.domain.service.output.albums.SpotifyDataOutput;
+import br.com.spring.spotify.connector.domain.service.output.albums.SpotifyAlbumDataOutput;
 import br.com.spring.spotify.connector.domain.usecase.UseCaseSpotifyConnectorGetAlbumsById;
 import br.com.spring.spotify.connector.port.outbound.SpotifyAlbumsOutBoundPort;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +27,7 @@ public class SpotifySevice implements UseCaseSpotifyConnectorGetAlbumsById {
     }
 
     @Override
-    public ResponseEntity<SpotifyDataOutput> getAlbums(String albumId) {
+    public ResponseEntity<SpotifyAlbumDataOutput> getAlbums(String albumId) {
         var token = getAccessToken();
         return spotifyAlbumsOutBoundPort.getAlbums(albumId, token);
     }

@@ -8,7 +8,7 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public record SpotifyDataOutput(
+public record SpotifyAlbumDataOutput(
         String id,
         String href,
         String name,
