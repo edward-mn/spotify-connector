@@ -4,7 +4,7 @@ import br.com.spring.spotify.connector.adapter.util.CustomLogApplication;
 import br.com.spring.spotify.connector.adapter.util.StringUtils;
 import br.com.spring.spotify.connector.config.authentication.AuthenticationConfig;
 import br.com.spring.spotify.connector.domain.model.authentication.Token;
-import br.com.spring.spotify.connector.domain.model.exceptions.HandleStatusCodeException;
+import br.com.spring.spotify.connector.domain.model.exceptions.statusCode.HandleStatusCodeException;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
