@@ -5,6 +5,6 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-public interface UseCaseSpotifyConnectorGetListAlbumsById {
+public interface GetAlbumsListUseCase {
     ResponseEntity<SpotifyListAlbumsDataOutput> getListAlbums(List<String> albumsId);
 }

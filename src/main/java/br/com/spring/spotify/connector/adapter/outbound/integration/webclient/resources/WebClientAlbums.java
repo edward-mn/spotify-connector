@@ -16,7 +16,6 @@ import java.util.Map;
 
 @Component
 public class WebClientAlbums {
-
     private final WebClient webClient;
     private final HandleStatusCodeException handleStatusCodeException;
     private final CustomLogApplication customLogApplication;
