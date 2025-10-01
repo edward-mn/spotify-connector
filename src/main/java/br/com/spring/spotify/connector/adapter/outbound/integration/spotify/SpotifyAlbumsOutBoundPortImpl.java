@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Map;
 
 @RequiredArgsConstructor
 @Component
@@ -18,12 +17,12 @@ public class SpotifyAlbumsOutBoundPortImpl implements SpotifyAlbumsOutBoundPort 
     private final WebClientAlbums webClientAlbums;
 
     @Override
-    public ResponseEntity<SpotifyAlbumDataOutput> getAlbums(String albumId, Map<String, String> headers) {
-        return webClientAlbums.getAlbums(albumId, headers);
+    public ResponseEntity<SpotifyAlbumDataOutput> getAlbums(String albumId) {
+        return webClientAlbums.getAlbums(albumId);
     }
 
     @Override
-    public ResponseEntity<SpotifyListAlbumsDataOutput> getListAlbums(List<String> albumsId, Map<String, String> headers) {
-        return webClientAlbums.getListAlbums(albumsId, headers);
+    public ResponseEntity<SpotifyListAlbumsDataOutput> getListAlbums(List<String> albumsId) {
+        return webClientAlbums.getListAlbums(albumsId);
     }
 }

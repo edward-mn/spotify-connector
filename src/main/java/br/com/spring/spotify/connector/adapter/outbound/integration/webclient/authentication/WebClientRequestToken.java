@@ -2,7 +2,7 @@ package br.com.spring.spotify.connector.adapter.outbound.integration.webclient.a
 
 import br.com.spring.spotify.connector.adapter.util.CustomLogApplication;
 import br.com.spring.spotify.connector.adapter.util.StringUtils;
-import br.com.spring.spotify.connector.config.authentication.AuthenticationConfig;
+import br.com.spring.spotify.connector.config.authentication.SpotifyAuthProperties;
 import br.com.spring.spotify.connector.domain.model.authentication.Token;
 import br.com.spring.spotify.connector.domain.model.exceptions.statusCode.HandleStatusCodeException;
 import org.springframework.http.HttpStatusCode;
@@ -15,18 +15,18 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Component
 public class WebClientRequestToken {
 
-    private final AuthenticationConfig authenticationConfig;
+    private final SpotifyAuthProperties spotifyAuthProperties;
     private final CustomLogApplication customLogApplication;
     private final HandleStatusCodeException handleStatusCodeException;
     private final WebClient.Builder webClient;
 
     public WebClientRequestToken(
-            AuthenticationConfig authenticationConfig,
+            SpotifyAuthProperties spotifyAuthProperties,
             CustomLogApplication customLogApplication,
             HandleStatusCodeException handleStatusCodeException,
             WebClient.Builder webClient
     ) {
-        this.authenticationConfig = authenticationConfig;
+        this.spotifyAuthProperties = spotifyAuthProperties;
         this.customLogApplication = customLogApplication;
         this.handleStatusCodeException = handleStatusCodeException;
         this.webClient = webClient;
@@ -37,9 +37,9 @@ public class WebClientRequestToken {
 
         MultiValueMap<String, String> bodyMap = new LinkedMultiValueMap<>();
 
-        bodyMap.add("grant_type", authenticationConfig.getGrantType());
-        bodyMap.add("client_id", authenticationConfig.getClientId());
-        bodyMap.add("client_secret", authenticationConfig.getClientSecret());
+        bodyMap.add("grant_type", spotifyAuthProperties.getGrantType());
+        bodyMap.add("client_id", spotifyAuthProperties.getClientId());
+        bodyMap.add("client_secret", spotifyAuthProperties.getClientSecret());
 
         customLogApplication.setLogInfoWebClient(StringUtils.SPOTIFY_AUTHENTICATION_RESOURCE_DESCRIPTION, StringUtils.SPOTIFY_AUTHENTICATION_RESOURCE_DESTINATION);
 
