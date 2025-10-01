@@ -28,11 +28,11 @@ public class SpotifyService implements GetAlbumByIdUseCase, GetAlbumsListUseCase
 
     @Override
     public ResponseEntity<SpotifyAlbumDataOutput> getAlbums(String albumId) {
-        return spotifyAlbumsOutBoundPort.getAlbums(albumId, getAccessToken());
+        return spotifyAlbumsOutBoundPort.getAlbums(albumId);
     }
 
     @Override
     public ResponseEntity<SpotifyListAlbumsDataOutput> getListAlbums(List<String> albumsId) {
-        return spotifyAlbumsOutBoundPort.getListAlbums(albumsId, getAccessToken());
+        return spotifyAlbumsOutBoundPort.getListAlbums(albumsId);
     }
 }

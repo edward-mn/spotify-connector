@@ -1,6 +1,9 @@
-webclient:
-  spotify:
-    grantType: ${GRANT_TYPE:}
-    credentials:
-      clientId: ${CLIENT_ID:}
-      clientSecret: ${CLIENT_SECRET:}
+spotify:
+  auth:
+    base-url: https://accounts.spotify.com
+    token-path: /api/token
+  secrets:
+    client-id: ${SPOTIFY_CLIENT_ID:}
+    client-secret: ${SPOTIFY_CLIENT_SECRET:}
+    grant-type: ${SPOTIFY_GRANT_TYPE:}
+    early-skew-seconds: 30   # margem de segurança antes de expirar
